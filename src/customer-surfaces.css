@@ -1,0 +1,199 @@
+/* Pearl and rose surfaces for the customer-facing pages. */
+:root {
+  --surface-pearl: #fffdfb;
+  --surface-petal: #fff5f8;
+  --surface-rose: #fbe8ef;
+  --surface-glow: rgb(236 173 199 / .32);
+  --surface-warmth: rgb(245 218 195 / .3);
+  --surface-airy:
+    radial-gradient(ellipse at 4% 12%, rgb(249 218 230 / .28), transparent 55%),
+    radial-gradient(ellipse at 95% 85%, var(--surface-warmth), transparent 58%),
+    linear-gradient(125deg, #fffdfb, #fff 55%, #fff8fb);
+  --surface-blush:
+    radial-gradient(ellipse at 92% 15%, var(--surface-glow), transparent 60%),
+    radial-gradient(ellipse at 8% 85%, var(--surface-warmth), transparent 58%),
+    linear-gradient(135deg, #fff9fb, #fcecf3 52%, #fffbf8);
+}
+
+[data-theme="beige"] {
+  --surface-pearl: #fffbf6;
+  --surface-petal: #fcf5ef;
+  --surface-rose: #f3e5df;
+  --surface-glow: rgb(224 188 174 / .25);
+  --surface-warmth: rgb(235 212 179 / .3);
+  --surface-airy:
+    radial-gradient(ellipse at 4% 12%, var(--surface-glow), transparent 55%),
+    linear-gradient(125deg, #fffcf8, #fffdfb 55%, #faf2ec);
+  --surface-blush:
+    radial-gradient(ellipse at 92% 15%, var(--surface-glow), transparent 60%),
+    linear-gradient(135deg, #fffbf6, #f4e8df 52%, #fffcf8);
+}
+
+body {
+  background: var(--surface-airy);
+  background-attachment: scroll;
+}
+
+.hero-luxury-stage {
+  background:
+    radial-gradient(ellipse at 15% 22%, rgb(255 255 255 / .94), transparent 62%),
+    radial-gradient(ellipse at 78% 72%, var(--surface-glow), transparent 60%),
+    linear-gradient(120deg, var(--surface-pearl), var(--surface-petal) 56%, var(--surface-rose));
+  border-bottom: 0;
+  box-shadow: none;
+}
+
+.hero-luxury-stage::before,
+.hero-spa-section::before {
+  content: none;
+}
+
+.hero-section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--surface-glow), transparent);
+}
+
+.standards-ticker {
+  background: linear-gradient(105deg, var(--surface-pearl), var(--surface-rose), var(--surface-pearl));
+  border-color: transparent;
+}
+
+.cream,
+.catalogue-hero,
+.about-hero,
+.form-page {
+  background: var(--surface-airy);
+}
+
+.blush,
+.tech-showcase-section,
+.final-cta {
+  background: var(--surface-blush);
+}
+
+.cream,
+.blush {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+/* These two backgrounds override the legacy white-only !important rules. */
+.pure-white,
+.section.pure-white,
+.section-white,
+.section.section-white {
+  background: var(--surface-airy) !important;
+  border-block-color: transparent;
+}
+
+.hero-spa-section {
+  background: var(--surface-blush) !important;
+  border-block-color: transparent;
+}
+
+.tech-showcase-section {
+  border-block-color: transparent;
+}
+
+.fibre-story {
+  background: var(--surface-airy);
+}
+
+.hero-spa-highlight {
+  background:
+    radial-gradient(ellipse at top right, var(--surface-glow), transparent 75%),
+    rgb(255 255 255 / .82);
+  border-radius: 20px;
+  box-shadow: 0 18px 48px -30px rgb(165 76 112 / .22);
+}
+
+.footer {
+  background:
+    radial-gradient(ellipse at top left, var(--surface-glow), transparent 65%),
+    linear-gradient(160deg, var(--surface-petal), var(--surface-pearl));
+}
+
+/* A dedicated text panel keeps the message clear beside the product photograph. */
+.full-editorial {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  height: auto;
+  min-height: 560px;
+  background: #301321;
+  color: #fffdfb;
+  isolation: isolate;
+}
+
+.full-editorial .full-overlay {
+  position: relative;
+  inset: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  max-width: none;
+  padding: clamp(40px, 6vw, 96px);
+  background:
+    radial-gradient(ellipse at 0 100%, rgb(170 79 119 / .22), transparent 70%),
+    linear-gradient(135deg, #301321, #451c31);
+}
+
+.full-editorial .eyebrow {
+  color: #f4c9da;
+  font-size: 11px;
+  letter-spacing: .16em;
+}
+
+.full-editorial h2 {
+  font-family: var(--sans);
+  font-size: clamp(38px, 4.7vw, 72px);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -.045em;
+  color: #fffdfb;
+  margin: 12px 0 32px;
+}
+
+.full-editorial h2 em {
+  display: inline-block;
+  color: #f4c9da;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: -.035em;
+}
+
+.full-editorial .button {
+  background: #f4c9da;
+  border-color: #f4c9da;
+  color: #301321;
+  box-shadow: 0 8px 28px rgb(0 0 0 / .12);
+}
+
+.full-editorial .button:hover {
+  background: #fff3f8;
+  border-color: #fff3f8;
+}
+
+.editorial-product-photo {
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  padding: 32px;
+  background: var(--surface-blush);
+}
+
+.editorial-product-photo img {
+  width: 100%;
+  height: 540px;
+  object-fit: contain;
+  border-radius: 16px;
+}
+
+@media(max-width:760px) {
+  .full-editorial { grid-template-columns: 1fr; min-height: 0; }
+  .full-editorial .full-overlay { padding: 48px 24px; }
+  .full-editorial h2 { font-size: clamp(36px, 8.5vw, 58px); }
+  .editorial-product-photo { padding: 24px; }
+  .editorial-product-photo img { height: 360px; }
+}

@@ -1,0 +1,151 @@
+/* Image edges dissolve into a rose wash, without a drawn border. */
+:root {
+  --image-edge-rgb: 236 173 199;
+  --image-feather: clamp(8px, 1.4vw, 18px);
+}
+
+[data-theme="beige"] {
+  --image-edge-rgb: 227 187 181;
+}
+
+.hero-seamless-img-container,
+.spa-gallery-stage,
+.product-image,
+.detail-main-frame,
+.about-photo,
+.social-card,
+.category-card {
+  isolation: isolate;
+  border: 0;
+  border-radius: 20px;
+  background:
+    radial-gradient(ellipse at 12% 100%, rgb(var(--image-edge-rgb) / .2), transparent 62%),
+    linear-gradient(145deg, #fff, var(--surface-petal, #fff5f8));
+  box-shadow: 0 18px 45px -28px rgb(var(--image-edge-rgb) / .5);
+}
+
+.spa-gallery-stage,
+.about-photo,
+.social-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.about-photo {
+  position: relative;
+}
+
+.hero-seamless-img-container {
+  inset: clamp(14px, 2vw, 30px);
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-seamless-img,
+.spa-gallery-stage > img,
+.product-image > img,
+.detail-image,
+.about-photo > img,
+.social-card > img,
+.category-photo > img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Feather the photograph itself, including portrait images in wider stages. */
+@supports (mask-composite: intersect) {
+  .hero-seamless-img,
+  .spa-gallery-stage > img,
+  .product-image > img,
+  .detail-image,
+  .about-photo > img,
+  .social-card > img,
+  .editorial-product-photo > img,
+  .category-photo > img {
+    mask-image:
+      linear-gradient(90deg, transparent, #000 var(--image-feather), #000 calc(100% - var(--image-feather)), transparent),
+      linear-gradient(180deg, transparent, #000 var(--image-feather), #000 calc(100% - var(--image-feather)), transparent);
+    mask-composite: intersect;
+  }
+}
+
+.hero-seamless-img-container::after,
+.spa-gallery-stage::after,
+.product-image::after,
+.detail-main-frame::after,
+.about-photo::after,
+.social-card::after,
+.category-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  background:
+    linear-gradient(90deg, rgb(var(--image-edge-rgb) / .25), transparent 8%, transparent 92%, rgb(var(--image-edge-rgb) / .2)),
+    linear-gradient(180deg, rgb(var(--image-edge-rgb) / .14), transparent 8%, transparent 90%, rgb(var(--image-edge-rgb) / .28));
+  pointer-events: none;
+}
+
+.product-card {
+  border: 0;
+  box-shadow: 0 14px 42px -24px rgb(var(--image-edge-rgb) / .45);
+}
+
+.product-image {
+  border-radius: 14px 14px 0 0;
+}
+
+.product-card:hover {
+  box-shadow: 0 20px 50px -24px rgb(var(--image-edge-rgb) / .65);
+}
+
+.view-badge,
+.social-card > span,
+.spa-ingredient-overlay {
+  z-index: 2;
+}
+
+.category-card > .category-photo {
+  position: relative;
+  inset: auto;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 320px;
+  padding: 0;
+  background: transparent;
+  overflow: hidden;
+}
+
+.category-photo > img {
+  position: static;
+  flex-shrink: 0;
+}
+
+.category-card::before {
+  height: 320px;
+  bottom: auto;
+}
+
+.category-card > div {
+  background: rgb(255 255 255 / .84);
+}
+
+@media (max-width: 600px) {
+  .hero-seamless-img-container {
+    inset: 10px 16px 18px;
+  }
+
+  .spa-gallery-stage,
+  .detail-main-frame,
+  .social-card {
+    border-radius: 16px;
+  }
+}
